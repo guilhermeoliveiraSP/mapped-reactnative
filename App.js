@@ -57,6 +57,7 @@ export default function App() {
       provider="google"
     >
         <Marker coordinate={{latitude: region.latitude, longitude: region.longitude }} />
+        <Marker coordinate={{latitude: region.latitude, longitude: region.longitude }} />
         
         <Marker 
             coordinate={pin}
