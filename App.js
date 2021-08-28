@@ -57,6 +57,7 @@ export default function App() {
       provider="google"
     >
         <Marker coordinate={{latitude: region.latitude, longitude: region.longitude }} />
+        
         <Marker 
             coordinate={pin}
             pinColor="black"
@@ -72,10 +73,47 @@ export default function App() {
             }}
             >
            <Callout>
-             <Text>I'm here</Text>
+             <Text>I'm here :)</Text>
             </Callout>   
         </Marker>
-        <Circle center={pin} radius={1000}/>
+        <Marker 
+            coordinate={pin}
+            pinColor="black"
+            draggable={true}
+            onDragStart={(e) => {
+              console.log("Drag Start", e.nativeEvent.coordinates)
+            }}
+            >
+           <Callout>
+             <Text>Renan Gay</Text>
+            </Callout>   
+        </Marker>
+        <Marker 
+            coordinate={pin}
+            pinColor="black"
+            draggable={true}
+            onDragStart={(e) => {
+              console.log("Drag Start", e.nativeEvent.coordinates)
+            }}
+            >
+           <Callout>
+             <Text>Salveee</Text>
+            </Callout>   
+        </Marker>
+        <Marker 
+            coordinate={pin}
+            pinColor="black"
+            draggable={true}
+            onDragStart={(e) => {
+              console.log("Drag Start", e.nativeEvent.coordinates)
+            }}
+            >
+           <Callout>
+             <Text>oiiii</Text>
+            </Callout>   
+        </Marker>
+        <Circle center={pin} radius={1000}
+        />
       </MapView>
     </View>
   )
