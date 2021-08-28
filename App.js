@@ -46,7 +46,7 @@ export default function App() {
         listView: { backgroundColor: "white"}
       }}
     />
-      <MapView 
+      <MapView
         style={styles.map} 
         initialRegion={{
           latitude: -23.738028,
