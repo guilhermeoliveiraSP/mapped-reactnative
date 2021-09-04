@@ -244,54 +244,54 @@ const MainScreen = () => {
     const locations = {
         robery: [
         {
-                title: 'Assalto na parada gay',
-                type: 'roubo',
-                description: 'Estava com meu namorado e fui assaltada de fuzil',
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
                 position: {
                     latitude: -23.738028,
                     longitude: -46.709824,
                 }
             },
         {
-                title: 'Roubo a mao armada',
-                type: 'morte',
-                description: 'Estava com meu cachorro e passaram a pistola',
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
                 position: {
                     latitude: -23.7153518,
                     longitude: -46.7069847,
                 }
             },
         {
-                title: 'Assalto na parada gay',
-                type: 'roubo',
-                description: 'Estava com meu cachorro e passaram a pistola',
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
                 position: {
                     latitude: -23.713898,
                     longitude: -46.702779,
                 }
             },
         {
-                title: 'Roubo a mao armada',
-                type: 'morte',
-                description: 'Estava com meu cachorro e passaram a pistola',
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
                 position: {
                     latitude: -23.7039782,
                     longitude: -46.7096292,
                 }
             },
         {
-                title: 'Assalto na parada gay',
-                type: 'roubo',
-                description: 'Estava com meu cachorro e passaram a pistola',
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
                 position: {
                     latitude: -23.7044013,
                     longitude: -46.7051284,
                 }
             },
         {
-                title: 'Roubo a mao armada',
-                type: 'morte',
-                description: 'Estava com meu cachorro e passaram a pistola',
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
                 position: {
                     latitude: -23.6866476,
                     longitude: -46.7009135,
