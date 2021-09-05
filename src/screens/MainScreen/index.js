@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { StyleSheet, Text, View, Dimensions, Input } from 'react-native';
+import { GooglePlacesAutocomplete, GooglePlaceDetail, Geometry, GooglePlacesSearchQuery } from 'react-native-google-places-autocomplete';
 import { Card } from '../../components/Card';
 
 import * as S from './styles'
@@ -299,6 +299,21 @@ const MainScreen = () => {
             },
         ] 
      }
+     const ref = useRef();
+
+     GooglePlacesAutocomplete
+
+     useEffect(() => {
+       ref.current?.focus()
+       ref.current?.setAddressText('Av. Elisa Rosa Cola Padoan');
+       ref.current?.focus()
+       console.log('get', ref.current?.getAddressText())
+
+      //  ref.current.onPress()
+      // ref.current?.GooglePlacesAutocomplete('moema')
+      console.log(ref.current)
+     }, []);
+
     const [ googlePin, setRegion ] = React.useState ({
         latitude: -23.712012,
         longitude: -46.7104609,
@@ -334,6 +349,58 @@ const MainScreen = () => {
     return (
        <S.Container style={{marginTop: 50, flex: 1 }}>
         <GooglePlacesAutocomplete
+        ref={ref}
+        placeholder= "Search"
+        fetchDetails={true}
+        // textInputProps={{
+        //   onChangeText: (text) => text 
+        // }}
+        GooglePlacesSearchQuery={{
+          rankby: "distance",
+          type: 'address'
+        }}
+        listViewDisplayed={true}
+        // keyboardShouldPersistTaps="handled"
+        value={ref.current?.getAddressText()}
+        // getAddressText={ref.current?.getAddressText()}
+        setAddressText={ref.current?.getAddressText()}
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          // console.log('DATA', data, )
+          console.log('DETAILS', details.geometry.location, )
+          // setRegion ({
+          //   latitude: details.geometry.location.lat,
+          //   longitude: details.geometry.location.lng,
+          //   latitudeDelta: 0.0922,
+          //   longitudeDelta: 0.0421,
+          // })
+          
+        }}
+        // textInputProps={{
+        //   InputComp: Input,
+        //   leftIcon: { type: 'font-awesome', name: 'chevron-left' },
+        //   errorStyle: { color: 'red' },
+        // }}
+        query={{
+          key: 'AIzaSyBZdF5jAG-JTkmmSlcvoCb3NOfPlS9DZcU',
+          language: 'pt-br',
+          componet: "country:br",
+          types: "",
+          radius: 3000,
+          location: `${googlePin.latitude}, ${googlePin.longitude}`
+          // location="Avenida interlagos"
+        }}
+        styles={{
+          container: { flex: 0, position: "absolute", width: "100%", zIndex: 1 },
+          listView: { backgroundColor: "black"}
+        }}
+        GooglePlacesDetailsQuery={{
+          fields: 'name,geometry,formatted_address'
+          }}
+      />
+      <View style={{marginTop: 40}}>
+{/* 
+        <GooglePlacesAutocomplete
         placeholder= "Search"
         fetchDetails={true}
         GooglePlacesSearchQuery={{
@@ -341,8 +408,6 @@ const MainScreen = () => {
         }}
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          console.log('DATA', data, )
-          console.log('DETAILS', details, )
           setRegion ({
             latitude: details.geometry.location.lat,
             longitude: details.geometry.location.lng,
@@ -359,10 +424,12 @@ const MainScreen = () => {
           location: `${googlePin.latitude}, ${googlePin.longitude}`
         }}
         styles={{
-          container: { flex: 0, position: "absolute", width: "100%", zIndex: 1 },
-          listView: { backgroundColor: "white"}
+          container: { flex: 1, position: "absolute", top: 600, width: "100%", zIndex: 6 },
+          listView: { backgroundColor: "black"}
         }}
-      />
+      /> */}
+      </View>
+
         <MapView
           style={styles.map} 
           initialRegion={{
@@ -414,6 +481,7 @@ const MainScreen = () => {
                 />
             ))}
         </S.AbsoluteContainer>
+                {/* <Input    /> */}
       </S.Container>
     )
 }
