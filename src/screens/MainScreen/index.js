@@ -243,6 +243,7 @@ const MainScreen = () => {
   ]
     const locations = {
         robery: [
+          // Zona Sul
         {
               title: 'Assalto no ponto',
               type: 'roubo',
@@ -295,6 +296,89 @@ const MainScreen = () => {
                 position: {
                     latitude: -23.6866476,
                     longitude: -46.7009135,
+                }
+            },
+            // Zona Leste
+        {
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
+                position: {
+                    latitude: -23.527160,
+                    longitude: -46.497411,
+                }
+            },
+            {
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
+                position: {
+                    latitude: -23.531066,
+                    longitude: -46.500490,
+                }
+            },
+            {
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
+                position: {
+                    latitude: -23.534686,
+                    longitude: -46.489654,
+                }
+            },
+            // Zona Norte
+            {
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
+                position: {
+                    latitude: -23.475436,
+                    longitude: -46.671391,
+                }
+            },        {
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
+                position: {
+                    latitude: -23.472529,
+                    longitude: -46.672748,
+                }
+            },
+            {
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
+                position: {
+                    latitude: -23.472972,
+                    longitude: -46.676171,
+                }
+            },
+            // Zona Oeste
+            {
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
+                position: {
+                    latitude: -23.564937,
+                    longitude: -46.723651,
+                }
+            },
+            {
+              title: 'Mataram um homem',
+              type: 'morte',
+              description: 'Estava na rua e executaram um homem no ponto',
+                position: {
+                    latitude: -23.575195,
+                    longitude: -46.722617,
+                }
+            },
+            {
+              title: 'Assalto no ponto',
+              type: 'roubo',
+              description: 'Estava com meu namorado e fui assaltada',
+                position: {
+                    latitude: -23.572018,
+                    longitude: -46.739133,
                 }
             },
         ] 
@@ -366,8 +450,8 @@ const MainScreen = () => {
         <MapView
           style={styles.map} 
           initialRegion={{
-            latitude: -23.712012,
-            longitude: -46.7104609,
+            latitude: -23.527160,
+            longitude: -46.497411,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
             
