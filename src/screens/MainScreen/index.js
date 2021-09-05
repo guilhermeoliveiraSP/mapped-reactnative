@@ -385,8 +385,8 @@ const MainScreen = () => {
               onDragStart={(e) => {
                 console.log("Drag Start", e.nativeEvent.coordinates)
               }}
-              icon={ item.type === "roubo" ? require('../../../assets/icons/alert.png') : 
-              require('../../../assets/icons/skulllogo.png')
+              icon={ item.type === "roubo" ? require('../../../assets/icons/warning.png') : 
+              require('../../../assets/icons/skull-new.png')
             }
               onDragEnd={(e) => {
                 setPin({
@@ -402,7 +402,7 @@ const MainScreen = () => {
           </Marker>
           ))}
           {!!selectedCardPosition?.latitude &&
-          <Circle center={selectedCardPosition} radius={1000} />
+          <Circle strokeWidth={3} strokeColor="white"  center={selectedCardPosition} radius={500} />
           }
         </MapView>
         <S.AbsoluteContainer 

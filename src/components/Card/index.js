@@ -15,7 +15,7 @@ const Card = ({title, description, type, onPress, last}) => {
         <S.IconContainer 
             type={type}
         >
-            <S.Icon source={type === 'roubo' ? require('../../../assets/icons/alert.png') : require('../../../assets/icons/skulllogo.png')}/>
+            <S.Icon source={type === 'roubo' ? require('../../../assets/icons/warning.png') : require('../../../assets/icons/skull-new.png')}/>
         </S.IconContainer>
         </S.Wrapper>
         </S.Container>
