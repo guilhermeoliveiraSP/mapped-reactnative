@@ -38,20 +38,20 @@ export const Wrapper = styled.View`
 
 export const IconContainer = styled.View`
     background: transparent;
-    ${({type}) =>  type === "morte" && css`
+    /* ${({type}) =>  type === "morte" && css`
     background-color: rgba(255, 255, 255, 0.6);
 
-    `}
+    `} */
     align-items: center;
     justify-content: center;
-    margin-bottom: 100px;
-    border: 1px solid white;
+    /* margin-bottom: 100px; */
+    /* border: 1px solid white; */
     border-radius: 40px;
-    width: 45px;
+    /* width: 45px; */
     margin-top: 5px;
 `;
 
 export const Icon = styled.Image`
-height: 75px;
-width: 75px;
+height: 30px;
+width: 30px;
 `;
