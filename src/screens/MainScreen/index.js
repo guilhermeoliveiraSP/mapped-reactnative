@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, Dimensions } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Card } from '../../components/Card';
+import { FilterTypeComponent } from '../../components/FilterTypeComponent';
+import { Platform } from "react-native";
+import { PreLoad } from '../../components/PreLoad';
 
 import * as S from './styles'
 
@@ -383,24 +386,27 @@ const MainScreen = () => {
             },
         ] 
      }
-    const [ googlePin, setRegion ] = React.useState ({
+
+
+
+
+    const [ googlePin, setRegion ] = useState ({
         latitude: -23.712012,
         longitude: -46.7104609,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
     })
     
-        const [ pin, setPin ] = React.useState ({
+        const [ pin, setPin ] = useState ({
             latitude: -23.7153518,
             longitude: -46.709824,
           })
           
 
-          const [ selectedCardPosition, setSelectedCardPosition ] = React.useState ({
+          const [ selectedCardPosition, setSelectedCardPosition ] = useState ({
             latitude: '',
             longitude: '',
           })
-          
 
       const handleItemSelect = (object) => {
         const { position } = object;
@@ -412,10 +418,39 @@ const MainScreen = () => {
         })
 
         console.log('cliquei', latitude, longitude )
-      }    
+      }
+      
+      const handleRegionChange = () => {
+      }
 
+      const [isLoading, setIsLoading] = useState(true)
+      const [filterType, setFilterType] = useState()
+     const [filtered, setFiltered] = useState([])
+ 
+      
+      useEffect(() => {
+        setFiltered(!filtered.length ? locations?.robery :   locations?.robery?.filter(item => item?.type === filterType))
+      }, [filterType])
 
+      const ChangeValue = (value) => {
+        setFilterType(value);
+      };
+
+        useEffect(() => {
+        setFiltered(locations?.robery)
+
+          setTimeout(() => {
+            setIsLoading(false)
+          }, 3500)
+        }, [])
+
+      if(isLoading){
+        return (
+          <PreLoad />
+          )
+      }
     return (
+      <>
        <S.Container style={{marginTop: 50, flex: 1 }}>
         <GooglePlacesAutocomplete
         placeholder= "Search"
@@ -428,8 +463,8 @@ const MainScreen = () => {
           console.log('DATA', data, )
           console.log('DETAILS', details, )
           setRegion ({
-            latitude: details.geometry.location.lat,
-            longitude: details.geometry.location.lng,
+            latitude: selectedCardPosition?.latitude || details.geometry.location.lat,
+            longitude: selectedCardPosition?.longitude || details.geometry.location.lng,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           })
@@ -443,21 +478,32 @@ const MainScreen = () => {
           location: `${googlePin.latitude}, ${googlePin.longitude}`
         }}
         styles={{
-          container: { flex: 0, position: "absolute", width: "100%", zIndex: 1 },
+          container: {
+            position: "absolute",
+            top: Platform.select({ ios: 0, android: 300 }),
+            width: "100%",
+            flex: 0,
+            zIndex: 1
+          },
           listView: { backgroundColor: "white"}
         }}
       />
+      
         <MapView
           style={styles.map} 
-          initialRegion={{
-            latitude: -23.527160,
-            longitude: -46.497411,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-            
+          region={{
+          latitude: selectedCardPosition?.latitude ||  -23.527160,
+          longitude: selectedCardPosition?.longitude || -46.497411,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
       }}
-      customMapStyle={mapStyle}
-        provider="google"
+          onRegionChange={region => {
+            setRegion(region);
+        }}
+          zoomControlEnabled
+          zoomTapEnabled
+          customMapStyle={mapStyle}
+          provider="google"
       >
           <Marker coordinate={{latitude: googlePin.latitude, longitude: googlePin.longitude }} />
           {locations.robery.map((item, index) => (
@@ -485,20 +531,24 @@ const MainScreen = () => {
               </Callout>   
           </Marker>
           ))}
-          {!!selectedCardPosition?.latitude &&
+          {!!selectedCardPosition &&
           <Circle strokeWidth={3} strokeColor="white"  center={selectedCardPosition} radius={500} />
           }
         </MapView>
+        <S.AbsoluteFilterContainer>
+          <FilterTypeComponent getType={ChangeValue} />
+        </S.AbsoluteFilterContainer>
         <S.AbsoluteContainer 
             horizontal
         >
-            {locations.robery.map((item, index, array) => (
+            {filtered.map((item, index, array) => (
                 <Card onPress={() => handleItemSelect(item)} key={index} last={array.length -1 === index} title={item.title} description={item.description}
                 type={item.type}
                 />
             ))}
         </S.AbsoluteContainer>
       </S.Container>
+      </>
     )
 }
 
